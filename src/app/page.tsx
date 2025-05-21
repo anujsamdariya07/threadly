@@ -1,5 +1,6 @@
 import CreatePost from '@/components/CreatePost';
 import ModeToggle from '@/components/ModeToggle';
+import WhoToFollow from '@/components/SuggestedUsers';
 import { currentUser } from '@clerk/nextjs/server';
 
 const Home = async () => {
@@ -12,7 +13,7 @@ const Home = async () => {
       </div>
 
       <div className='lg:block hidden lg:col-span-4 sticky top-20'>
-        WhoToFollow
+        <WhoToFollow/>
       </div>
     </div>
   );

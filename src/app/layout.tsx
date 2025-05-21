@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { dark, neobrutalism } from '@clerk/themes';
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
+import { Toaster } from '@/components/ui/sonner';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -59,6 +60,7 @@ export default function RootLayout({
                 </div>
               </main>
             </div>
+            <Toaster position='bottom-right' />
           </ThemeProvider>
         </body>
       </html>

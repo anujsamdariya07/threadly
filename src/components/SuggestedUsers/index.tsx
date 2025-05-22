@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import FollowButton from '../FollowButton';
 
-const WhoToFollow = async () => {
+const SuggestedUsers = async () => {
   const users = await getRandomUsers();
 
   if (users.length === 0) {
@@ -50,4 +50,4 @@ const WhoToFollow = async () => {
   );
 };
 
-export default WhoToFollow;
+export default SuggestedUsers;

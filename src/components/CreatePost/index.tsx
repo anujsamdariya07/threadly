@@ -9,6 +9,7 @@ import { Button } from '../ui/button';
 import { ImageIcon, Loader2Icon, SendIcon } from 'lucide-react';
 import { createPost } from '@/actions/post.action';
 import { toast } from 'sonner';
+import ImageUpload from '../ImageUpload';
 
 const CreatePost = () => {
   const { user } = useUser();
@@ -19,26 +20,26 @@ const CreatePost = () => {
 
   const handleSubmit = async () => {
     if (!content.trim() && !imageUrl) {
-      return
+      return;
     }
 
-    setPosting(true)
+    setPosting(true);
 
     try {
-      const result = await createPost(content, imageUrl)
-      if (result.success) {
+      const result = await createPost(content, imageUrl);
+      if (result?.success) {
         // reset the form
-        setContent('')
-        setImageUrl('')
-        setShowImageUpload(false)
+        setContent('');
+        setImageUrl('');
+        setShowImageUpload(false);
 
-        toast.success('Post created successfully!')
+        toast.success('Post created successfully!');
       }
     } catch (error) {
-      console.error('Failed to create post:', error)
-      toast.error('Failed to create post!')
+      console.error('Failed to create post:', error);
+      toast.error('Failed to create post!');
     } finally {
-      setPosting(false)
+      setPosting(false);
     }
   };
 
@@ -60,6 +61,20 @@ const CreatePost = () => {
           </div>
 
           {/* TODO: Handle image uploads */}
+          {(showImageUpload || imageUrl) && (
+            <div className='border rounded-lg p-4'>
+              <ImageUpload
+                endpoint='imageUploader'
+                value={imageUrl}
+                onChange={(url) => {
+                  setImageUrl(url);
+                  if (!url) {
+                    setShowImageUpload(false);
+                  }
+                }}
+              />
+            </div>
+          )}
 
           <div className='flex items-center justify-between border-t pt-4'>
             <div className='flex space-x-2'>
